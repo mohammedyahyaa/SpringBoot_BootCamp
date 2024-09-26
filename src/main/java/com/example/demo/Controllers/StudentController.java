@@ -1,6 +1,10 @@
-package com.example.demo;
+package com.example.demo.Controllers;
 
 
+import com.example.demo.Entities.Student;
+
+import com.example.demo.Repositories.StudentRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +44,11 @@ public class StudentController {
         return studentRepository.findAllByFirstnameContaining(name);
     }
 
+
+
+
     @DeleteMapping("DeleteStudents/{student-id}")
+    @ResponseStatus(HttpStatus.OK)
     public void DeleteStudent (@PathVariable("student-id") int studentId) {
 
        studentRepository.deleteById(studentId);
