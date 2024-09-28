@@ -1,21 +1,51 @@
 package com.example.demo.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
     @Id
     @GeneratedValue
-    private int id ;
+    private int id;
     private String firstname;
     private String lastname;
 
     @Column(unique = true)
     private String email;
-    private int age ;
+    private int age;
+
+
+    @OneToOne(
+
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
+
+
+    StudentProfile studentProfile;
+
+
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    @JsonBackReference
+    School school;
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
 
 
     public String getFirstname() {

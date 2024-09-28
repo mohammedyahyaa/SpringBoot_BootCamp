@@ -1,9 +1,7 @@
 package com.example.demo.Entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class StudentProfile {
@@ -14,6 +12,22 @@ public class StudentProfile {
     private Long id;
 
     private String bio ;
+
+
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    Student student;
+
+
+
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public StudentProfile() {
 
