@@ -17,7 +17,7 @@ public class School {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -36,11 +36,11 @@ public class School {
 
 
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

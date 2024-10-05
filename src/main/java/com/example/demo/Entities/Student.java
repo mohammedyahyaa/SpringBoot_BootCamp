@@ -21,8 +21,6 @@ public class Student {
             mappedBy = "student",
             cascade = CascadeType.ALL
     )
-
-
     StudentProfile studentProfile;
 
 

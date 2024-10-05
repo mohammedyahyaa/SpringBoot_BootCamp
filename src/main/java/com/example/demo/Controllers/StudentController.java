@@ -1,6 +1,9 @@
 package com.example.demo.Controllers;
 
 
+import com.example.demo.Dtos.StudentDto;
+import com.example.demo.Dtos.StudentDtoResponse;
+import com.example.demo.Entities.School;
 import com.example.demo.Entities.Student;
 
 import com.example.demo.Repositories.StudentRepository;
@@ -25,6 +28,46 @@ public class StudentController {
         return studentRepository.save(student);
         //  return Student ;
     }
+
+
+
+
+
+    @PostMapping("/PostStudentDto")
+    public StudentDtoResponse postStudentusingDto(@RequestBody StudentDto studentDto) {
+
+        var student = StudentDto(studentDto) ;
+
+        var studentDtoResponse = studentRepository.save(student);
+
+        return studentDtoResponse(studentDtoResponse) ;
+        //return studentRepository.save(student);
+        //  return Student ;
+    }
+
+
+    private StudentDtoResponse studentDtoResponse(Student student) {
+
+        return new StudentDtoResponse (
+            student.getFirstname(),
+            student.getLastname(),
+            student.getEmail()
+
+        ) ;
+
+    }
+
+    private Student StudentDto (StudentDto studentDto) {
+
+        Student student = new Student();
+        student.setFirstname(studentDto.firstname());
+        student.setLastname(studentDto.lastname());
+        student.setEmail(studentDto.email());
+        var school = new School() ;
+        school.setId(studentDto.schoolId());
+        return student;
+    }
+
 
     @GetMapping("/students")
     public List<Student> getStudent() {

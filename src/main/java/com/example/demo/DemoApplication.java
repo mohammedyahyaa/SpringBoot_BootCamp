@@ -13,8 +13,6 @@ public class DemoApplication {
         System.out.println("Welcome to DEMO project");
 
         SpringApplication.run(DemoApplication.class, args);
-
-
     }
 
 
